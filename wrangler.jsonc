@@ -28,7 +28,11 @@
     // Static assets are matched before the Worker by default. /api/lead is not
     // a file on disk so it would fall through anyway, but pinning it here means
     // adding an asset at that path can never shadow the endpoint.
-    "run_worker_first": ["/api/*"]
+    // Pages pass through the Worker first so a request for the www host gets a
+    // 301 to the bare domain (wwwRedirect in worker/index.js). The "!"
+    // patterns keep static files on the asset server directly, so a page view
+    // costs one Worker request, not one per file.
+    "run_worker_first": ["/*", "/api/*", "!/css/*", "!/fonts/*", "!/images/*", "!/js/*"]
   },
 
   // Outbound email through Cloudflare Email Service. No third party account
