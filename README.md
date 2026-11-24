@@ -10,7 +10,7 @@ Telegram and the shared Google Sheet.
 > **Built against `CLAUDE.md`**, the standing microsite checklist: no RERA wording
 > anywhere, no source attribution, Embassy's palette and type (self-hosted under
 > `site/fonts/`), the "E" monogram instead of the builder's logo, the hidden
-> `Project Name`, `Zone` and `lead_source` fields on every form, the 8-second pop-up,
+> `Project Name`, `Zone` and `lead_source` fields on every form, the 5-second pop-up and offer buttons,
 > the Bengaluru sibling list in the FAQ, and no em dashes anywhere in the copy.
 >
 > **LEADS ARE ROUTED BY ZONE**, as on every Bangalore microsite: the Zone field is
@@ -323,7 +323,7 @@ straight into the HTML.
 
 ## Contact pop-up
 
-`site/js/contact-popup.js` opens an enquiry form 8 seconds after the visitor
+`site/js/contact-popup.js` opens an enquiry form 5 seconds after the visitor
 lands, once per browser session (not again on another page or after it is
 closed). It closes on X, Esc or a click outside, and is a compact sheet at
 the foot of the screen on phones. Its design follows the enquiry dialog on the DSR Ciel and Sri Tirumala

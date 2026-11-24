@@ -99,11 +99,10 @@ for (const [input, expected, label] of [
   check('too short rejected', res.status === 422 && store.size === 0, `status ${res.status}`);
 }
 
-console.log('\n--- validation (all four fields are required in the markup) ---');
+console.log('\n--- validation (name, phone and message are required; email is not) ---');
 for (const [patch, label] of [
   [{ name: 'A' }, 'name under 2 chars rejected'],
   [{ email: 'not-an-email' }, 'malformed email rejected'],
-  [{ email: '' }, 'missing email rejected'],
   [{ message: '' }, 'missing message rejected'],
   [{ phone: '' }, 'missing phone rejected']
 ]) {
@@ -392,6 +391,19 @@ console.log('\n--- asset fall-through ---');
   check('non-API request falls through to ASSETS', (await res.text()) === 'ASSET');
   const root = await worker.fetch(new Request('https://x/'), env, {});
   check('root falls through to ASSETS', (await root.text()) === 'ASSET');
+}
+
+console.log('\n--- pilot: email optional; a bare ten-digit number must be an Indian mobile ---');
+for (const [patch, label, ok] of [
+  [{ email: '', phone: '+91 91234 50001' }, 'blank email accepted', true],
+  [{ phone: '1000000000' }, 'bot number 1000000000 rejected', false],
+  [{ phone: '5551234567' }, 'ten digits not starting 6-9 rejected', false],
+  [{ phone: '+1 415 555 0134' }, 'number with a country code accepted', true]
+]) {
+  store.clear();
+  if (typeof seen !== 'undefined' && seen.clear) seen.clear();
+  const res = await send({ ...valid, name: 'Pilot Check', ...patch });
+  check(label, ok ? (res.status === 200 && store.size === 1) : (res.status === 422 && store.size === 0), `status ${res.status}`);
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
