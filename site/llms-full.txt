@@ -91,6 +91,8 @@ Map: https://www.google.com/maps/search/?api=1&query=13.1851%2C77.5982
 - [Gallery](https://embassychapparkallu.com/gallery): pictures of the towers, Villa Homes, clubhouses and landscape
 - [FAQs](https://embassychapparkallu.com/faqs): location, homes, price, the master plan, amenities and the developer
 - [Contact](https://embassychapparkallu.com/contact-us): enquire about the project
+- [About Embassy](https://embassychapparkallu.com/about-builder): the developer, Embassy Group and Embassy Developments Limited, and its Bengaluru homes
+- [Embassy Chapparkallu vs After the Rain](https://embassychapparkallu.com/vs-after-the-rain): this project beside Total Environment After the Rain, villas off Bellary Road in Yelahanka
 
 ## Contact
 
